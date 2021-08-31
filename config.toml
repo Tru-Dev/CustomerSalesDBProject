@@ -1,0 +1,8 @@
+[database]
+url_schema = "sqlite:///" # postgresql:// etc.
+# For SQLite, connection will be a file, otherwise it will be the contents of the connection URL. 
+connection = "db.sqlite3"
+relative = true # Marks if the connection is a file (SQLite) and is relative to this folder.
+
+[window]
+title = "DGS, LLC | Customer Sales DB | {}" # Use {} to specify the part of the title that changes
