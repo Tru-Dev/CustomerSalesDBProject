@@ -22,3 +22,5 @@ class Config:
     @property
     def windowtitle(self):
         return self.data["window"]["title"]
+
+config = Config()
