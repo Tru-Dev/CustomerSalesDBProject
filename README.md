@@ -10,7 +10,7 @@ All packages needed are in `requirements.txt`.
   the database itself and install the package(s) necessary (for example, psycopg2 for PostgreSQL)
 
 ## Setup
-The default settings are for a SQLite memory database, with a sample window title.  
+The default settings are for a SQLite database, with a sample window title.  
 There is an included graphical utility (`change_settings.py`) which will also set up the database.
 
 ## Usage

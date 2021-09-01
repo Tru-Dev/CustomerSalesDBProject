@@ -32,6 +32,15 @@ class Customer(Base):
 
     purchases = relationship("Sale", back_populates="customer")
 
+    def __init__(self, first_name, last_name, address, city, state, zip, email, phone) -> None:
+        self.first_name = first_name
+        self.last_name = last_name
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.email = email
+        self.phone = phone
 
 class Product(Base):
     __tablename__ = "products"
@@ -41,12 +50,17 @@ class Product(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(30))
-    max_grade = Column(Integer, CheckConstraint("max_grade <= 12"))
     min_grade = Column(Integer, CheckConstraint("min_grade >= 0")) # 0 = PreK
+    max_grade = Column(Integer, CheckConstraint("max_grade <= 12"))
     price = Column(Numeric(13, 2))
 
     sales = relationship("Sale", back_populates="product")
 
+    def __init__(self, name, min_grade, max_grade, price) -> None:
+        self.name = name
+        self.min_grade = min_grade
+        self.max_grade = max_grade
+        self.price = price
 
 class Sale(Base):
     __tablename__ = "sales"
@@ -60,5 +74,8 @@ class Sale(Base):
     customer = relationship("Customer", back_populates="purchases")
     product = relationship("Product", back_populates="sales")
 
-
-
+    def __init__(self, customer_id, product_id, date, paid) -> None:
+        self.customer_id = customer_id
+        self.product_id = product_id
+        self.date = date
+        self.paid = paid
