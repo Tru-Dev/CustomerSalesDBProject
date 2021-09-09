@@ -1,3 +1,4 @@
 sqlalchemy
 toml
+tkintertable # For table visualization
 # psycopg2 # For PostgreSQL support

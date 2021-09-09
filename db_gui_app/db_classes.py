@@ -1,3 +1,4 @@
+from datetime import date
 from sqlalchemy import (
     create_engine, Column,
     Integer, String, Numeric, Date,
@@ -32,15 +33,15 @@ class Customer(Base):
 
     purchases = relationship("Sale", back_populates="customer")
 
-    def __init__(self, first_name, last_name, address, city, state, zip, email, phone) -> None:
-        self.first_name = first_name
-        self.last_name = last_name
-        self.address = address
-        self.city = city
-        self.state = state
-        self.zip = zip
-        self.email = email
-        self.phone = phone
+    def __init__(self, *args, **kwargs) -> None:
+        self.first_name = kwargs["first_name"]
+        self.last_name = kwargs["last_name"]
+        self.address = kwargs["address"]
+        self.city = kwargs["city"]
+        self.state = kwargs["state"]
+        self.zip = int(kwargs["zip"])
+        self.email = kwargs["email"]
+        self.phone = kwargs["phone"]
 
 class Product(Base):
     __tablename__ = "products"
@@ -56,11 +57,11 @@ class Product(Base):
 
     sales = relationship("Sale", back_populates="product")
 
-    def __init__(self, name, min_grade, max_grade, price) -> None:
-        self.name = name
-        self.min_grade = min_grade
-        self.max_grade = max_grade
-        self.price = price
+    def __init__(self, *args, **kwargs) -> None:
+        self.name = kwargs["name"]
+        self.min_grade = int(kwargs["min_grade"])
+        self.max_grade = int(kwargs["max_grade"])
+        self.price = float(kwargs["price"])
 
 class Sale(Base):
     __tablename__ = "sales"
@@ -74,8 +75,8 @@ class Sale(Base):
     customer = relationship("Customer", back_populates="purchases")
     product = relationship("Product", back_populates="sales")
 
-    def __init__(self, customer_id, product_id, date, paid) -> None:
-        self.customer_id = customer_id
-        self.product_id = product_id
-        self.date = date
-        self.paid = paid
+    def __init__(self, *args, **kwargs) -> None:
+        self.customer_id = kwargs["customer_id"]
+        self.product_id = kwargs["product_id"]
+        self.date = date.fromisoformat(kwargs["date"])
+        self.paid = float(kwargs["paid"])

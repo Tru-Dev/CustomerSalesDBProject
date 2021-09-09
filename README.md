@@ -6,12 +6,13 @@ All packages needed are in `requirements.txt`.
 * Python version must be 3.8+
 * SQLAlchemy
 * toml
+* tkintertable
 * If you are planning to interface with a database other than SQLite, make sure to setup
   the database itself and install the package(s) necessary (for example, psycopg2 for PostgreSQL)
 
 ## Setup
 The default settings are for a SQLite database, with a sample window title.  
-There is an included graphical utility (`change_settings.py`) which will also set up the database.
+There is an included utility (`change_settings.py`) which will set up the database.
 
 ## Usage
 * To run application: `python3 -m db_gui_app`
